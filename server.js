@@ -3,6 +3,10 @@ const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 let port = process.env.PORT || 3030;
+srv = app.listen(process.env.PORT)
+app.use('/peerjs', require('peer').ExpressPeerServer(srv, {
+    debug: true
+}))
 const {
     v4: uuidV4
 } = require('uuid')
@@ -33,4 +37,5 @@ io.on('connection', socket => {
 
 server.listen(port, () => {
     console.log(`${port}`)
+    console.log(srv)
 })
