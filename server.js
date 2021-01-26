@@ -11,7 +11,8 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-    res.redirect(`/${uuidV4()}`)
+    res.render('index')
+    // res.redirect(`/${uuidV4()}`)
 })
 
 app.get('/:room', (req, res) => {
@@ -32,5 +33,5 @@ io.on('connection', socket => {
 })
 
 server.listen(port, () => {
-    console.log(`${port}`)
+    console.log(`hostingPort:${port}`)
 })
